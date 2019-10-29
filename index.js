@@ -1,13 +1,15 @@
 const express = require('express');
-const hubsRouter = require('./hubs/hubs-router.js');
 const server = express();
+const posts = require('./data/posts');
+
 server.use(express.json());
+
+server.use('/api/posts', posts);
+
 server.get('/', (req, res) => {
- res.send(`
-   <h2>Jordans endpoints</h>
- `);
-});
-server.use('/api/hubs', hubsRouter)
-server.listen(4000, () => {
+  res.status(200).json('Success, Welcome !')
+ });
+
+server.listen(2000, () => {
  console.log('\n*** Server Running on http://localhost:2000 ***\n');
 });
